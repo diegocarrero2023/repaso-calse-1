@@ -1,18 +1,21 @@
-{% extends "tienda/base.html"%}
+{% extends "tienda/base.html" %}
 
-{% block title %} Inicio {% endblock %} 
+{% block title %}Productos{% endblock %}
 
-{% block content %} 
-<h1>Bienvenidos</h1>
+{% block content %}
+<h1>Productos</h1>
+<p>
+    <a href="{% url 'tienda:crear_producto' %}" class="btn">+ Nuevo producto</a>
+</p>
 <ul>
-    {% for p in productos %} 
+    {% for p in productos %}
     <li>
-        <a href="{% url 'tienda:detalle_producto' p.pk %} ">
-            {{ p.nombre }} - ${{p.precio|floatformat:0}}
+        <a href="{% url 'tienda:detalle_producto' p.pk %}" >
+            {{ p.nombre }} - ${{ p.precio|floatformat:0 }}
         </a>
     </li>
-    {% empty %} 
-    <li> NO hay productos disponibles. </li>
-    {% endfor %} 
+    {% empty %}
+    <li>No hay productos disponibles.</li>
+    {% endfor %}
 </ul>
-{% endblock %} 
+{% endblock %}

@@ -1,18 +1,13 @@
-{% extends "tienda/base.html"%}
+{% extends "tienda/base.html" %}
 
-{% block title %} Pedidos {% endblock %} 
+{% block title %}{{ producto.nombre }}{% endblock %}
 
-{% block content %} 
-<h1>Bienvenidos</h1>
-<ul>
-    {% for p in productos %} 
-    <li>
-        <a href="{% url 'tienda:detalle_producto' p.pk %} ">
-            {{ p.nombre }} - ${{p.precio|floatformat:0}}
-        </a>
-    </li>
-    {% empty %} 
-    <li> NO hay productos disponibles. </li>
-    {% endfor %} 
-</ul>
-{% endblock %} 
+{% block content %}
+<h1>{{ producto.nombre }}</h1>
+<p>{{ producto.descripcion }}</p>
+<p><strong>Precio:</strong> ${{ producto.precio|floatformat:0 }}</p>
+<p>
+    <a href="{% url 'tienda:editar_producto' producto.pk %}" class="btn">✏️ Editar producto</a>
+    <a href="{% url 'tienda:eliminar_producto' producto.pk %}" class="btn">🗑️ Eliminar producto</a>
+</p>
+{% endblock %}
